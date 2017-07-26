@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
-
+import { connect } from 'react-redux';
+import { View, Text, Image, Button, FlatList } from 'react-native';
+import { DrawerButton } from '../../../../components/DrawerButton';
+import { fetchListContact } from '../../../../actions/Contact';
 class ListContact extends Component {
-    static navigationOptions = {
-        title: 'List Contact'
-    }
+    static navigationOptions = (navigation) => ({
+        title: 'List Contact',
+        headerLeft: <DrawerButton navigation={navigation} />,
+        headerTitleStyle: {
+            alignSelf: 'center'
+        }
+    });
+    // componentWillMount(){
+    //     console.log('componentWillMount');
+    //     this.props.fetchListContact();
+    // }
     render() {
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text>List Contact</Text>
-                <Image source={require('../../../../img/icons/contact.png')}
-                    style={styles.icon}
+                <FlatList
+                    data={[{ key: 'a' }, { key: 'b' }]}
+                    renderItem={({ item }) => <Text>{item.key}</Text> }
                 />
             </View>
         );
@@ -23,4 +33,7 @@ const styles = {
     }
 }
 
-export default ListContact;
+export default connect(
+    state => (
+        { contacts: state.contacts })
+    , { fetchListContact })(ListContact);

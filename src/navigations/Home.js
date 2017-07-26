@@ -5,35 +5,9 @@ import TabChat from './TabChat';
 import TabGroup from './TabGroup';
 import { Image } from 'react-native';
 const Home = TabNavigator({
-    TabContact: {
-        screen: TabContact,
-        navigationOptions: {
-            tabBarLabel: 'Contacts',
-            tabBarIcon: ({ tintColor }) => (
-                <Image source={require('../img/icons/contact.png')}
-                    style={[styles.icon, { tintColor: tintColor }]}
-                />
-            ),
-        }
-    },
-    TabChat: { screen: TabChat,
-        navigationOptions: {
-            tabBarLabel: 'Chat',
-            tabBarIcon: ({ tintColor }) => (
-                <Image source={require('../img/icons/chat.png')}
-                    style={[styles.icon, { tintColor: tintColor }]}
-                />
-            ),
-        } },
-    TabGroup: { screen: TabGroup,
-        navigationOptions: {
-            tabBarLabel: 'Groups',
-            tabBarIcon: ({ tintColor }) => (
-                <Image source={require('../img/icons/group.png')}
-                    style={[styles.icon, { tintColor: tintColor }]}
-                />
-            ),
-        } },
+    TabContact: { screen: TabContact },
+    TabChat: { screen: TabChat },
+    TabGroup: { screen: TabGroup },
 },
     {
         tabBarOptions: {
@@ -47,13 +21,22 @@ const Home = TabNavigator({
             },
         },
         tabBarPosition: 'bottom',
+        navigationOptions: {
+            drawerLabel: 'Home',
+            drawerIcon: ({ tintColor }) => (
+                <Image
+                    source={require('../img/icons/home.png')}
+                    style={[styles.icon, { tintColor: tintColor }]}
+                />
+            ),
+        }
 
     });
 
 const styles = {
     icon: {
-        width: 23,
-        height: 23,
+        width: 24,
+        height: 24,
     }
 }
 export default Home;
